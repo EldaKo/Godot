@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp77tkxhukgix"]
+
+[ext_resource type="Texture2D" uid="uid://crncls74fkh0m" path="res://player/tile_0007.png" id="1_458jg"]
+[ext_resource type="FontFile" uid="uid://cebxedjdqv80q" path="res://font/SCDream6.otf" id="2_ykmu8"]
+[ext_resource type="Script" path="res://Button.gd" id="3_noj85"]
+
+[sub_resource type="Animation" id="Animation_mjehp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 313)]
+}
+
+[sub_resource type="Animation" id="Animation_dmlya"]
+resource_name = "yellowmon"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 313), Vector2(550, 313)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r0hfi"]
+_data = {
+"RESET": SubResource("Animation_mjehp"),
+"yellowmon": SubResource("Animation_dmlya")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1150, 650)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 0.819608, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 313.0
+offset_right = 50.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+texture = ExtResource("1_458jg")
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -237.0
+offset_top = -400.0
+offset_right = 237.0
+offset_bottom = -353.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ykmu8")
+theme_override_font_sizes/font_size = 40
+text = "JUMP AND EATING COIN"
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -67.0
+offset_top = -250.0
+offset_right = 67.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ykmu8")
+theme_override_font_sizes/font_size = 40
+text = "START"
+script = ExtResource("3_noj85")
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ykmu8")
+theme_override_font_sizes/font_size = 16
+text = "@EldaKo"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_r0hfi")
+}
+autoplay = "yellowmon"
+
+[connection signal="pressed" from="ColorRect/Button" to="ColorRect/Button" method="_on_pressed"]
